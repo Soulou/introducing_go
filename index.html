@@ -1,177 +1,378 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
-	</head>
-	<body>
+    <title>reveal.js - The HTML Presentation Framework</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+  </head>
+  <body>
 
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1>Go</h1>
-					<h3>Présentation pour les mongueurs</h3>
-					<p>
-					<small>Réalisée par Léo <a href="https://github.com/Soulou">'Soulou'</a> Unbekandt</small>
-					</p>
-				</section>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Go</h1>
+          <h3>Présentation pour les mongueurs</h3>
+          <p>
+          <small>Réalisée par Léo <a href="https://github.com/Soulou">'Soulou'</a> Unbekandt</small>
+          </p>
+        </section>
 
-				<section>
-					<h1><span style="font-size:30px;letter-spacing:0.1em">LO</span>Go</h1>
-					<a href="http://golang.org" target="_blank">
-						<img src="./img/Go-Google-programming-language.png"/>
-					</a>
-				</section>
+        <section>
+          <h1><span style="font-size:30px;letter-spacing:0.1em">LO</span>Go</h1>
+          <a href="http://golang.org" target="_blank">
+            <img src="./img/Go-Google-programming-language.png"/>
+          </a>
+        </section>
 
-				<section>
-					<h2>Historique</h2>
-					<h4>Principal développeur : Rob Pike</h4>
-					<ul>
-						<li>2007 —  Google 80/20</li>
-						<li>2009 —  Licence BSD</li>
-						<li>Maintenant —  Go 1.1-rc3</li>
-					</ul>
-					<aside class="notes">
-						Travaille avec Kernighan sur UNIX
-					</aside>
-				</section>
+        <section>
+          <h2>Historique</h2>
+          <h4>Principal développeur : Rob Pike</h4>
+          <ul>
+            <li>2007 —  Google 80/20</li>
+            <li>2009 —  Licence BSD</li>
+            <li>Maintenant —  Go 1.1-rc3</li>
+          </ul>
+          <aside class="notes">
+            Travaille avec Kernighan sur UNIX
+            Développé par la communauté
+          </aside>
+        </section>
 
-				<section>
-					<section>
-						<h2>Généralités</h2>
-						<ul>
-							<li>Langage compilé statiquement</li>
-							<li>Multiplateforme (GNU/Linux, BSD, OS X, Windows)</li>
-							<li>Multiarchitecture (x86, amd64, ARM)</li>
-							<li>Garbage Collector</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Langage compilé statiquement</h3>
-						<ul>
-							<li>Pas de bibliothèque partagée</li>
-							<li>Binaire légèrement lourd</li>
-							<li>Exécutable portable</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Multiplateforme</h3><h3>Multiarchitecture</h3>
-						<pre><code>
-$ GOOS=windows GOARCH=386 go build main.go
-$ GOOS=darwin GOARCH=amd64 go build main.go
-$ GOOS=freebds GOARCH=arm GOARM=5 go build main.go
-						</pre></code>
-					</section>	
-					<section>
-						<h3>Garbage Collector</h3>
-						<ul>
-							<li>Pas de <code>malloc</code> ni de <code>free</code></li>
-							<li>Mark &amp; Sweep GC</li>
-						</ul>
-					</section>
-				</section>
+        <section>
+          <h2>Go en production</h2>
+          <p><img width="300" src="./img/google.jpg" />  <img width="300" src="./img/heroku.png"/></p>
+          <p><img width="300" src="./img/canonical.jpg" />  <img width="300" src="./img/cloudflare.png"/></p>
+        </section>
 
-				<section data-state="alert">
-					<h2>La syntaxe</h2>
-					<blockquote>« Syntax is not important... - unless you are a programmer.»<br><small>Rob Pike</small></blockquote>
-				</section>
+        <section>
+          <section>
+            <h2>Généralités</h2>
+            <ul>
+              <li>Langage compilé statiquement</li>
+              <li>Multiplateforme (GNU/Linux, BSD, OS X, Windows)</li>
+              <li>Multiarchitecture (x86, amd64, ARM)</li>
+              <li>Garbage Collector</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Langage compilé statiquement</h3>
+            <ul>
+              <li>Pas de bibliothèque partagée</li>
+              <li>Binaire légèrement lourd</li>
+              <li>Exécutable portable</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Multiplateforme</h3><h3>Multiarchitecture</h3>
+            <pre><code class="shell">
+  $ GOOS=windows GOARCH=386 go build main.go
+  $ GOOS=darwin GOARCH=amd64 go build main.go
+  $ GOOS=freebds GOARCH=arm GOARM=5 go build main.go
+            </pre></code>
+          </section>  
+          <section>
+            <h3>Garbage Collector</h3>
+            <ul>
+              <li>Pas de <code>malloc</code> ni de <code>free</code></li>
+              <li>Mark &amp; Sweep GC</li>
+            </ul>
+          </section>
+        </section>
+        
+        <section data-state="alert">
+          <section>
+            <h2>La syntaxe</h2>
+            <blockquote>« Syntax is not important... - unless you are a programmer.»<br><small>Rob Pike</small></blockquote>
+          </section>
+          <section>
+            <h2>La syntaxe...</h2>
+            <h3>est unique</h3>
+          </section>
+          <section>
+            <pre><code class="go">
+  package main ; import "fmt" ; func main() { fmt.Println("← Hello World ☺ →"); }
+            </code></pre>
+            <code>$ go fmt main.go</code>
+            <pre><code class="go">
+  package main
 
-				<section>
-					<h2>Références</h2>
-					<ul>
-						<li>Go Language Resources - <a href="http://go-lang.cat-v.org" target="_blank">http://go-lang.cat-v.org</a> </li>
-						<li>A tour of Go - <a href="http://tour.golang.org" target="_blank">http://tour.golang.org</a></li>
-						<li>Go Doc - <a href="http://godoc.org/" target="_blank">http://godoc.org/</a></li>
-						<li>Go Dashboard<a href="https://code.google.com/p/go-wiki/wiki/Projects" target="_blank">https://code.google.com/p/go-wiki/wiki/Projects</a></li>
-					</ul>
-				</section>
+  import "fmt"
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
+  func main() { 
+    fmt.Println("← Hello World ☺ →")
+  }
+            </code></pre>
+            <aside class="notes">
+              UTF-8 !
+            </aside>
+          </section>
+          <section>
+            <h3>La syntaxe unique</h3>
+            <ul>
+              <li>Contraignant au début</li>
+              <li>Agréable par la suite</li>
+              <ul>
+                <li>Lisibilité hautement accrue</li>
+                <li>Plus aisé à écrire</li>
+              </ul>
+            </ul>
+            <aside class="notes">
+              Car il n'y a pas N manière de faire, juste une
+            </aside>
+          </section>
+        </section>
+        <section data-state="soothe">
+          <section>
+            <h2>Le Langage</h2>
+            <h3>Variables</h3>
+            <pre><code class="go">
+  i := 0
+  b := true
+            </code></pre> ==
+            <pre><code class="go">
+  var i int = 0
+  var b bool = true
+            </code></pre>
+          </section>
+          <section>
+            <h3>Fonctions</h3>
+            <pre><code class="go">
+  func hello(name string) string {
+    return fmt.Sprintf("Hello %s !\n", name)
+  }
 
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
+  func split(str string) (string, string) {
+    return str[:len(str)/2], str[len(str)/2:]
+  }
 
-						```
-						<section data-markdown>
-						  ## Markdown support
+  incr := func(n int) int {
+    return n+1
+  }
+            </code></pre>
+            <aside class="notes">
+              Les string sont IMMUTABLES !
+            </aside>
+          </section>
+          <section>
+            <h3>Structures de contrôle</h3>
+            <pre><code class="go">
+  if i == 0 {
+    os.Exit(0)
+  } else {
+    fmt.Printf("NOT ZERO !\n")
+  }
 
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
+  for i := 0 ; i &lt; N ; i++ { ..
+  for i &lt; N { ..
+  for {
+    if doSomething() {
+      break
+    }
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h3>Tableau / Slice</h3>
+            <pre><code class="go">
+  var array [10]int 
+  slice := array[:2]
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
+  emptySlide := make([]int, 10)  
 
-				<section>
-					<section data-state="alert">
-					</section>
-					<section data-state="blackout">
-					</section>
-					<section data-state="soothe">
-					</section>
-				</section>
-			</div>
-		</div>
+  strArray := []string{"Salut", "les", "Mongueurs"}
+  for k,v := range strArray {
+    fmt.Printf("Index : %d, Value : %s\n", k, v)
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h3>Map</h3>
+            <pre><code class="go">
+  data := map[string]string {
+    "key1" : "value1",
+    "key2" : "value2"
+  }
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+  for k,v := range data { // ...
+            </code></pre>
+          </section>
+          <section>
+            <h3>La gestion des dépendances</h3>
+            <p>Une structure en <em>packages</em></p>
+            <pre><code class="go">
+  // Fichier base.go
+  package base
 
-		<script>
+  func Inc(n int) int {
+    return n + 1
+  }
+  func dec(n int) int {
+    return n - 1
+  }
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+            </code></pre>
+          </section>
+          <section>
+            <h3>La gestion des dépendances</h3>
+            <p>Une structure en <em>packages</em></p>
+            <pre><code class="go">
+  // Fichier projet.go
+  package projet
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+  import (
+    ./base
+    fmt
+  )
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+  func main() {
+    fmt.Printf("Inc(1) = %d\n", base.Inc(1))
+    // ERREUR
+    fmt.Printf("dec(1) = %d\n", base.dec(1))
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h3>Les dépendances externes</h3>
+            <pre><code class="go">
+  import (
+    github.com/pmylund/go-cache
+    launchpad.net/gnuflag
+    bitbucket.org/taruti/ssh.go
+    code.google.com/p/go-avltree
+  )
+            </code></pre>
+            <pre><code class="shell">
+  $ go get [import]
+            </code></pre>
+          </section>
+          <section>
+            <h3>Gestion des erreurs</h3>
+            <pre><code class="go">
+  f, err := os.Open(name)
+  if err != nil {
+    // Traitement err
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h3>Report d'instructions</h3>
+            <pre><code class="go">
+  f, err := os.Open(name)
+  if err != nil {
+    // Traitement err
+  }
+  defer f.Close()
+  // Utilisation du file handle
+            </code></pre>
+          </section>
+          <section>
+            <h3>Des fermetures (closures) !</h3>
+            <pre><code class="go">
+  func AddN(n int) func(int) int {
+    return func(m int) {
+      return m + n
+    }
+  }
 
-		</script>
+  add10 := AddN(10)
+  fmt.Print(add10(1))
+            </code></pre>
+          </section>
+          <section>
+            <h3>Type, Structure et Méthode</h3>
+            <pre><code class="go">
+  type Point struct {
+    x, y float64
+  }
 
-	</body>
+  func (this *Point) dist(that *Point) float64 {
+    math.Sqrt(math.Pow(that.x - this.x, 2) + math.Pow(that.y - this.y, 2))   
+  }
+
+  p1 := &amp;Point{1.0,2.0}
+  p2 := &amp;Point{2.0,3.0}
+  fmt.Println("%f\n", p1.dist(p2))
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <h2>Concurrence</h2>
+          <h3>avec GO</h3>
+        </section>  
+        <section>
+          <h2>Références</h2>
+          <ul>
+            <li>Go Language Resources - <a href="http://go-lang.cat-v.org" target="_blank">http://go-lang.cat-v.org</a> </li>
+            <li>A tour of Go - <a href="http://tour.golang.org" target="_blank">http://tour.golang.org</a></li>
+            <li>Go Doc - <a href="http://godoc.org/" target="_blank">http://godoc.org/</a></li>
+            <li>Go Dashboard<a href="https://code.google.com/p/go-wiki/wiki/Projects" target="_blank">https://code.google.com/p/go-wiki/wiki/Projects</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Questions<br>-<br>Remarques ?</h1>
+        </section>
+
+        <section>
+          <h2>Merci</h2>
+
+          <a href="https://github.com/Soulou/introducing_go" target="_blank">
+            <img src="./img/avatar.jpg"/>
+          </a> 
+          <p>
+            Léo Unbekandt<br>Étudiant à l'ENSIIE Strasbourg
+          </p>
+        </section>
+
+        <section>
+          <section data-state="alert">
+          </section>
+          <section data-state="blackout">
+          </section>
+          <section data-state="soothe">
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+  </body>
 </html>
