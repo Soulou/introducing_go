@@ -1,11 +1,9 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="fr">
   <head>
     <meta charset="utf-8">
-
-    <title>reveal.js - The HTML Presentation Framework</title>
-    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <title>Go Introduction, A language for concurrency</title>
+    <meta name="description" content="Introduction of GO using reveal.js">
     <meta name="author" content="Hakim El Hattab">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -307,10 +305,87 @@
             </code></pre>
           </section>
         </section>
+      	<section>
+	        <section>
+            <h2>Concurrence</h2>
+            <h3>avec GO</h3>
+          </section>  
+          <section>
+            <h3>Les goroutines</h3>
+            <pre><code class="go">
+  func doSomething(n int) {
+    time.Sleep(n * time.Millisecond)
+    fmt.Printf("%d ms\n", n)
+  }
+
+  func main() {
+    go doSomething(200)
+    go doSomething(400)
+    doSomething(600)
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h3>Les Channels</h3>
+            <pre><code class="go">
+  func waitRead(ch chan bool) {
+    time.Sleep(2 * time.Second)
+    ch &lt;- true
+  }
+  func main() {
+    ch := make(chan bool, 1)
+    go waitReady(ch)
+    &lt;- ch
+    fmt.Printf("We are ready\n")
+  }
+            </code></pre>
+          </section>
+          <section>
+          <pre><code class="go">  func idGenerator() chan int {
+    ids := make(chan int)
+    go func() {
+      id := 0
+      for {
+        ch &lt;- id
+        id++
+      }
+    }()
+    return ids
+  }
+  func main() {
+    ids := idGenerator()
+    id1 := &lt;-ids
+    id2 := &lt;-ids
+  }
+          </code></pre>
+          </section>
+          <section>
+            <h3>Select</h3>
+            <pre><code class="go">
+  timeout := time.After(2 * time.Seconds)
+  ch := make(chan Result)
+  go func() {
+    ch &lt;- doSomething() 
+  }()
+  select {
+    case r := &lt;-ch:
+      // On a un résultat en moins d'1 sec
+    case &lt;-timeout:
+      // Timeout, on traite le cas
+  }
+            </code></pre>
+          </section>
+          <section data-state="alert">
+            <h2>Goroutines + Channels<br>♥</h2>
+            <ul>
+              <li>Pas de mutex</li>
+              <li>Pas de semaphore</li>
+              <li>Très puissant</li>
+            </ul>
+          </section>
+        </section>
         <section>
-          <h2>Concurrence</h2>
-          <h3>avec GO</h3>
-        </section>  
+        </section>
         <section>
           <h2>Références</h2>
           <ul>
@@ -334,15 +409,9 @@
           <p>
             Léo Unbekandt<br>Étudiant à l'ENSIIE Strasbourg
           </p>
-        </section>
-
-        <section>
-          <section data-state="alert">
-          </section>
-          <section data-state="blackout">
-          </section>
-          <section data-state="soothe">
-          </section>
+          <p>
+            <a href="http://go.l3o.eu" target="_blank">http://go.l3o.eu</a>
+          </p>
         </section>
       </div>
     </div>
