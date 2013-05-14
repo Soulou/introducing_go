@@ -100,7 +100,8 @@
           </section>
           <section>
             <pre><code class="go">
-  package main ; import "fmt" ; func main() { fmt.Println("← Hello World ☺ →"); }
+  package main ; import "fmt" ; func main() { 
+  fmt.Println("← Hello World ☺ →"); }
             </code></pre>
             <code>$ go fmt main.go</code>
             <pre><code class="go">
@@ -171,14 +172,9 @@
   } else {
     fmt.Printf("NOT ZERO !\n")
   }
-
   for i := 0 ; i &lt; N ; i++ { ..
   for i &lt; N { ..
-  for {
-    if doSomething() {
-      break
-    }
-  }
+  for { .. 
             </code></pre>
           </section>
           <section>
@@ -226,14 +222,12 @@
             <h3>La gestion des dépendances</h3>
             <p>Une structure en <em>packages</em></p>
             <pre><code class="go">
-  // Fichier projet.go
-  package projet
-
+  // Fichier main.go
+  package main
   import (
     ./base
     fmt
   )
-
   func main() {
     fmt.Printf("Inc(1) = %d\n", base.Inc(1))
     // ERREUR
@@ -276,7 +270,7 @@
             </code></pre>
           </section>
           <section>
-            <h3>Des fermetures (closures) !</h3>
+            <h3>Fermetures (closures) !</h3>
             <pre><code class="go">
   func AddN(n int) func(int) int {
     return func(m int) {
@@ -294,11 +288,11 @@
   type Point struct {
     x, y float64
   }
-
   func (this *Point) dist(that *Point) float64 {
-    math.Sqrt(math.Pow(that.x - this.x, 2) + math.Pow(that.y - this.y, 2))   
+    math.Sqrt(
+      math.Pow(that.x - this.x, 2) + 
+      math.Pow(that.y - this.y, 2))
   }
-
   p1 := &amp;Point{1.0,2.0}
   p2 := &amp;Point{2.0,3.0}
   fmt.Println("%f\n", p1.dist(p2))
@@ -352,6 +346,8 @@
     }()
     return ids
   }
+          </code></pre>
+          <pre><code class="go">
   func main() {
     ids := idGenerator()
     id1 := &lt;-ids
@@ -385,6 +381,134 @@
           </section>
         </section>
         <section>
+          <section> 
+            <h2>stdlib<br>riche et moderne</h2>
+            <ul>
+              <li>CSV, JSON, XML</li>
+              <li>Mail, SMTP, HTTP, HTML (template)</li>
+              <li>Crypto : RSA, AES, DES, SHA, TLS, x509</li>
+              <li>Compression : bz2, gz, lzw, zip
+            </ul>
+          </section>
+          <section> 
+            <h3>Oubliez la libcurl</h3>
+            <pre><code class="go">
+  resp, err := http.Get("http://example.com/")
+  resp, err := http.Post("http://example.com/upload", 
+    "image/jpeg", &amp;buf)
+  resp, err := http.PostForm("http://example.com/form",
+    url.Values{"key": {"Value"}, "id": {"123"}})
+            </code></pre>
+          </section>
+          <section>
+            <pre><code class="go">
+  s := &amp;http.Server{
+    Addr:           ":8080",
+    Handler:        myHandler,
+    ReadTimeout:    10 * time.Second,
+    WriteTimeout:   10 * time.Second,
+    MaxHeaderBytes: 1 &lt;&lt; 20,
+  }
+            </code></pre>
+            <pre><code class="go">
+  func myHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, %q", 
+      html.EscapeString(r.URL.Path))
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h2>Des frameworks</h2>
+            <ul>
+              <li><a href="http://robfig.github.io/revel/" target="_blank">http://robfig.github.io/revel/</a></li>
+              <li><a href="http://www.gorillatoolkit.org/" target="_blank">http://www.gorillatoolkit.org/</a></li>
+              <li><a href="https://code.google.com/p/goweb/" target="_blank">https://code.google.com/p/goweb/</a></li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>CGO</h2>
+            <pre><code class="go">
+  package main
+
+  import "fmt"
+
+  // #include &lt;stdio.h&gt;
+  import "C"
+
+  func main() {
+    n, err := C.getchar()
+    fmt.Print(n, err)
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h2>Des bindings C</h2>
+            <ul>
+              <li>GoSqlite3</li>
+              <li>GoMysql</li>
+              <li>GoCurses</li>
+              <li>GoGL</li>
+              <li>...</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h2>L'outil CLI : GO</h2>
+          <ul>
+            <li>get</li>
+            <li>build</li>
+            <li>run</li>
+            <li>fmt</li>
+            <li>doc</li>
+            <li>test</li>
+            <li>fix</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h2>Setup ton PC</h2>
+            <pre><code class="shell">
+  $ wget 'http://goo.gl/qa4FT'
+  $ tar xvf go1.1.linux-amd64.tar.gz
+  $ echo "export GOOS=linux" &gt; ~/.zshrc
+  $ echo "export GOARCH=amd64" &gt; ~/.zshrc
+  $ echo "export GOROOT=`pwd`/go" &gt; ~/.zshrc
+  $ echo "export GOPATH=~/Workspace/go" &gt; ~/.zshrc
+  $ echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" &gt; ~/.zshrc
+            </code></pre>
+          </section>
+          <section>
+          <pre><code>
+  $GOPATH/
+    bin/
+    pkg/
+      linux_amd64/
+        projet/
+          package/
+            *.a
+    src/
+      project/
+        package/
+          *.go
+          </code></pre>
+          </section>
+          <section>
+            <h2>Setup Vim</h2>
+            <ul>
+              <li><a href="https://github.com/fsouza/go.vim.git" target="_blank">https://github.com/fsouza/go.vim.git</a></li>
+              <li><a href="https://github.com/nsf/gocode" target="_blank">https://github.com/nsf/gocode</a></li>
+            </ul>
+            <pre><code class="shell">
+  $ go get -u github.com/nsf/gocode
+  $ $GOPATH/src/github.com/nsf/gocode/vim/update_pathogen.sh
+            </code></pre>
+          </section>
+          <section>
+            <h2>Setup ZSH</h2>
+            <p> <a href="http://tip.golang.org/misc/zsh/go" target="_blank">http://tip.golang.org/misc/zsh/go</a></p>
+          </section>
         </section>
         <section>
           <h2>Références</h2>
