@@ -25,6 +25,11 @@ body {
   letter-spacing: -0.02em;
   color: #333333; }
 
+.reveal pre code {
+  font-size: 30px;
+  line-height: 100%;
+}
+
 ::selection {
   color: white;
   background: #134674;
