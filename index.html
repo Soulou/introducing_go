@@ -298,9 +298,39 @@
   fmt.Println("%f\n", p1.dist(p2))
             </code></pre>
           </section>
+          <section>
+            <h3>Les interfaces</h3>
+          <pre><code class="go">
+  type Animal interface {
+    Bruit(uint16) error
+  } 
+
+  type Chien struct {
+    Animal
+  }
+
+  type Poisson struct {
+    Animal
+  }
+          </code></pre>
+          </section>
+          <section>
+            <h3>Les interfaces</h3>
+            <pre><code class="go">
+  func (c Chien) Bruit(n uint16) error {
+    for i := 0 ; uint16(i) &lt; n ; i++ {
+      fmt.Println("Waf")
+    }
+    return nil
+  } 
+  func (p Poisson Bruit(n uint16) error {
+    return fmt.Errorf("Je ne fais pas de bruit je suis un poisson\n")
+  }
+            </code></pre>
+          </section>
         </section>
-      	<section>
-	        <section>
+        <section>
+          <section>
             <h2>Concurrence</h2>
             <h3>avec GO</h3>
           </section>  
@@ -476,7 +506,7 @@
   $ echo "export GOARCH=amd64" &gt; &gt; ~/.zshrc
   $ echo "export GOROOT=`pwd`/go" &gt; &gt; ~/.zshrc
   $ echo "export GOPATH=~/Workspace/go" &gt; &gt; ~/.zshrc
-  $ echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" &gt&gt; ~/.zshrc
+  $ echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" &gt; &gt; ~/.zshrc
             </code></pre>
           </section>
           <section>
