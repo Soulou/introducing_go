@@ -225,8 +225,8 @@
   // Fichier main.go
   package main
   import (
-    ./base
-    fmt
+    "base"
+    "fmt"
   )
   func main() {
     fmt.Printf("Inc(1) = %d\n", base.Inc(1))
@@ -239,10 +239,10 @@
             <h3>Les dépendances externes</h3>
             <pre><code class="go">
   import (
-    github.com/pmylund/go-cache
-    launchpad.net/gnuflag
-    bitbucket.org/taruti/ssh.go
-    code.google.com/p/go-avltree
+    "github.com/pmylund/go-cache"
+    "launchpad.net/gnuflag"
+    "bitbucket.org/taruti/ssh.go"
+    "code.google.com/p/go-avltree"
   )
             </code></pre>
             <pre><code class="shell">
@@ -323,7 +323,7 @@
     }
     return nil
   } 
-  func (p Poisson Bruit(n uint16) error {
+  func (p Poisson) Bruit(n uint16) error {
     return fmt.Errorf("Je ne fais pas de bruit je suis un poisson\n")
   }
             </code></pre>
